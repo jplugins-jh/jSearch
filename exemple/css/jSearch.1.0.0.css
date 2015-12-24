@@ -1,0 +1,11 @@
+.jsearch_back{position: fixed;top: 0;left: 0;height: 100%;width: 100%;background-color: #000;opacity: 0.5;display: none;}
+.jsearch_parent{position: absolute;top: 0;right: 0;width: 20em;height:100%;background-color:#F5F5F5;display: none}
+.jsearch_title_box{border-bottom:0.1em solid #DCDCDC;padding: 0.8em 0.5em;text-align: center;font-size: 1.2em;background-color: #FFF}
+.jsearch_title_cancel{font-size: 1em;float: left;color:gray;}
+.jsearch_title_confirm{font-size: 1em;float: right;color:gray;}
+.jsearch_parent_roll_box{padding:1em 0}
+.jsearch_ul{background-color: #FFF;list-style: none;width: 19.4em;padding: 0;padding-left: 0.6em;border-top:0.1em solid #DCDCDC;border-bottom: 0.1em solid #DCDCDC}
+.jsearch_ul li{padding: 0.6em 0;padding-right:0.5em;border-bottom: 0.1em solid #DCDCDC}
+.jsearch_ul li:active{background-color: #F5F5F5}
+.jsearch_node_select_text{float: right;color: gray;margin-right: 1em}
+.jsearch_node_icon{float: right;color: gray;}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>移动web端查询插件</title>
+	<link rel="stylesheet" type="text/css" href="css/jSearch.1.0.0.css">
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../jSearch.js"></script>
+</head>
+<body>
+	<a href="#" id="search">筛选</a>
+	<script type="text/javascript">
+		var tree = [
+			{
+				name:"地区",children:[
+					{name:"四川省",children:[
+							{name:"全部",vals:[{province:""},{city:""}]},
+							{name:"成都市",vals:[{province:"四川省"},{city:"成都市"}]},
+							{name:"自贡市",vals:[{province:"四川省"},{city:"自贡市"}]},
+							{name:"泸州市",vals:[{province:"四川省"},{city:"泸州市"}]}
+						]
+					}
+				]
+			},{
+				name:"融资轮",children:[
+					{name:"第1轮",val:{filedname:"financingRound",val:"1"}},
+					{name:"第2轮",val:{filedname:"financingRound",val:"2"}},
+					{name:"第3轮",val:{filedname:"financingRound",val:"3"}},
+					{name:"第4轮",val:{filedname:"financingRound",val:"4"}},
+					{name:"第5轮",val:{filedname:"financingRound",val:"5"}}
+				]
+			},{
+				name:"投资行业",children:[
+					{name:"制造业",children:[
+						{name:"财务公司",vals:[{tradeName:"制造业"},{tradeTypeName:"财务公司"}],bactext:'制造业-财务公司'},
+						{name:"杂货店",vals:[{tradeName:"制造业"},{tradeTypeName:"杂货店"}],bactext:'制造业-杂货店'}
+					]},{name:"建筑业",children:[
+						{name:"典当",vals:[{tradeName:"制造业"},{tradeTypeName:"典当"}],bactext:'制造业-典当'},
+						{name:"药店",vals:[{tradeName:"制造业"},{tradeTypeName:"药店"}],bactext:'制造业-药店'}
+					]}
+				]
+			},{
+				name:"投资金额",children:[
+					{name:"10万以下",val:{maxAmount:"100000"},bactext:'10万以下'},
+					{name:"10-30万",vals:[{maxAmount:"300000"},{minAmount:"100000"}],bactext:'10-30万'}
+				]
+			}
+		];
+
+		$("#search").jSearch({
+			tree:tree,
+			callback:function(data) {
+				console.log(data);
+				alert('查询');
+			}
+		});
+	</script>
+</body>
+</html>
