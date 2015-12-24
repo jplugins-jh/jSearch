@@ -257,7 +257,7 @@
 
 				//做滚动的盒子
 				var parentRollBox = $(js.domName.div);
-
+				parentRollBox.addClass('jsearch_parent_roll_box');
 				var nodeBox = $(js.domName.ul);
 				nodeBox.addClass('jsearch_ul')
 
@@ -288,16 +288,11 @@
 			//插件的显示和关闭方法
 			js.pluginShow = function() {
 				js.body.css('overflow','hidden');
-				if(js.show) {
-					js.show = false;
-				}else{
-					js.show = true;
-					js.jSearchBack.show();
-					js.jSearchBack.animate({opacity:0.5},300,function() {
-						//当前显示层级加1
-						js.createLayer(js.searchThree);
-					});
-				}
+				js.jSearchBack.show();
+				js.jSearchBack.animate({opacity:0.5},300,function() {
+					//当前显示层级加1
+					js.createLayer(js.searchThree);
+				});
 			}
 
 			//插件本身的初始化方法调用
@@ -307,7 +302,7 @@
 				//实例绑定点击事件
 				js.currentDoc.bind('click', js.pluginShow);
 				//背景绑定点击关闭事件
-				js.jSearchBack.bind('click', js.pluginShow);
+				js.jSearchBack.bind('click', js.closeAll);
 			}
 
 			js.load();
