@@ -9,3 +9,5 @@
 .jsearch_ul li:active{background-color: #F5F5F5}
 .jsearch_node_select_text{float: right;color: gray;margin-right: 1em}
 .jsearch_node_icon{float: right;color: gray;}
+.jeearch_btn_clear{color:gray;text-align: center;width: 10em;display: block;padding-top: 0.5em,padding-bottom:0.5em;position: absolute;bottom: 1em;left: 5em;border-radius: 0.1em;border: 0.1em solid #FFFFFF;padding: 0.2em}
+.jeearch_btn_clear:active{background: #FFFFFF}

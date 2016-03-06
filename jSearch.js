@@ -27,6 +27,7 @@
 				show:false,
 				//默认层级高度
 				baseIndex:1000,
+				//当前筛选层级，从0开始，每弹出一层，则上升一级
 				currentLevel:0
 			};
 
@@ -158,16 +159,27 @@
 					js.layers = new Array;
 				}
 
+				if(typeof js.parents == 'undefined') {
+					js.hasParent = false;
+					js.parents = new Array;
+				}else{
+					js.hasParent = true;
+				}
+
 				//创建子节点壳,返回节点盒子
 				var nodeDomObj = js.createNodeBox(parent);
 
 				//在壳中添加节点
 				var children = parent.children;
+				
 				for (var i = 0; i < children.length; i++) {
 					var nodeObj = children[i];
 					var node = $(js.domName.li);
 					node.attr('node',i);
 					node.text(nodeObj.name);
+
+					var nodeJsObj = {};
+					nodeJsObj.node = node;
 
 					//有子节点
 					if(typeof nodeObj.children != 'undefined') {
@@ -176,6 +188,7 @@
 						nodeIcon.text('»');
 						nodeIcon.addClass('jsearch_node_icon');
 						node.append(nodeIcon);
+						nodeJsObj.nodeIcon = nodeIcon;
 
 						if(js.layers.length == 0) {
 							var nodeSelect = $(js.domName.span);
@@ -190,6 +203,7 @@
 								js.nodeSelect = new Array;
 							}
 							js.nodeSelect.push(nodeSelect);
+							nodeJsObj.nodeSelect = nodeSelect;
 						}
 
 						node.attr('parent',JSON.stringify(nodeObj));
@@ -206,12 +220,15 @@
 							js.createData(jQuery.parseJSON($(this).attr('parent')));
 						});
 					}
-
+					if(!js.hasParent) {
+						js.parents.push(nodeJsObj);
+					}
 					if(i == children.length - 1) {
 						node.css('border-bottom','none');
 					}
 					
 					nodeDomObj.nodeBox.append(node);
+					console.log("add a node");
 				}
 
 				//弹出动画
@@ -247,7 +264,7 @@
 
 				if(js.layers.length == 0) {
 					//确定按钮
-					var confirmBtn = $(js.domName.span);
+					var confirmBtn = $(js.domName.div);
 					confirmBtn.addClass('jsearch_title_confirm');
 					confirmBtn.text('确定');
 					title.append(confirmBtn);
@@ -267,6 +284,16 @@
 				box.append(parentRollBox);
 
 				js.body.append(box);
+
+				if(js.layers.length == 0) {
+					//清空按钮
+					var clearBtn = $(js.domName.span);
+					clearBtn.text('清空');
+					clearBtn.addClass("jeearch_btn_clear");
+					clearBtn.bind('click',js.clear);
+
+					box.append(clearBtn);
+				}
 
 				//调整盒子初始位置
 				box.css('left',$(window).width());
@@ -304,8 +331,20 @@
 				//背景绑定点击关闭事件
 				js.jSearchBack.bind('click', js.closeAll);
 			}
-
+			//添加一个清空方法
+			js.clear = function() {
+				js.currentLevel = 0;
+				js.retData = {};
+				js.searchTmp = new Array;
+				for (var i = 0; i < js.parents.length; i++) {
+					js.parents[i].nodeSelect.text('全部');
+				}
+				js.confirm();
+			}
+			//加载一次
 			js.load();
+
+			return js;
 		}
 	});
 })(jQuery)
