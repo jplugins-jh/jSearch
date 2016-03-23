@@ -137,6 +137,7 @@
 
 			js.goFirst = function() {
 				if(js.layers.length > 1) {
+					//js.currentLevel--;
 					var layer = js.layers[(js.layers.length - 1)];
 					layer.animate({left:$(window).width()},300,function() {
 						layer.remove();
@@ -148,7 +149,6 @@
 							js.goFirst();
 						}
 					});
-					js.currentLevel--;
 				}
 			}
 
@@ -226,9 +226,7 @@
 					if(i == children.length - 1) {
 						node.css('border-bottom','none');
 					}
-					
 					nodeDomObj.nodeBox.append(node);
-					console.log("add a node");
 				}
 
 				//弹出动画
@@ -275,6 +273,7 @@
 				//做滚动的盒子
 				var parentRollBox = $(js.domName.div);
 				parentRollBox.addClass('jsearch_parent_roll_box');
+				parentRollBox.height($(window).height() - 200);
 				var nodeBox = $(js.domName.ul);
 				nodeBox.addClass('jsearch_ul')
 
