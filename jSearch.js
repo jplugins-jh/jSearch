@@ -52,7 +52,7 @@
 				js.jSearchBack.bind('click',js.closeAll);
 
 				js.searchThree = {};
-				js.searchThree.name = '筛选';
+				js.searchThree.name = '';
 				js.searchThree.children = js.tree
 			}
 
