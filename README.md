@@ -66,4 +66,5 @@ var tree = [{name:'区域',children:[
 
     最后会将val和vals中的数据组合成一个json传到回调中
 
-###希望大家多多指正
+## 效果图如下
+![](https://github.com/jplugins-jh/jSearch/blob/master/img/search.png)
